@@ -15,8 +15,9 @@ import javax.swing.JPanel;
  */
 public class Principal extends javax.swing.JFrame {
 
-     Crono crono;
-     boolean estado = true;
+    private Crono crono;
+    private boolean vivo;
+    
     public Principal() {
         initComponents();
         crono = new Crono(this);
@@ -276,17 +277,30 @@ public class Principal extends javax.swing.JFrame {
         
          
     }//GEN-LAST:event_funcionPulsada
+
+    public boolean isVivo() {
+        return vivo;
+    }
+    
+    
     public void encender(){
-        if(crono.isEstado()== false){
-           crono.setEstado(true); 
-        }
-        crono.start();
         
-      }    
+        if(crono.isEstado()== true){
+            crono.start();
+            vivo = crono.isAlive();
+         }
+        //crono.start();
+        }
+        
+        
+           
     
     public void detener(){
         crono.setEstado(false);
-    }
+       }
+    public void resetear(){
+        crono.interrupt();
+       }
     
     public void pausar(){
         if(crono.isPause()== false){
